@@ -1,0 +1,602 @@
+/* -------------------- RESET E GLOBAIS -------------------- */
+* {
+    margin: 0;
+    /* Remove margem padrão */
+    padding: 0;
+    /* Remove padding padrão */
+    box-sizing: border-box;
+    /* Garante que padding e borda sejam incluídos na largura/altura do elemento */
+}
+
+html {
+    /* Garante a rolagem suave ao clicar nos links internos (âncoras) */
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    /* Define a fonte padrão */
+    color: #000;
+    /* Cor do texto padrão (preto) */
+    background-color: #fff;
+    /* Cor de fundo padrão (branco) */
+    /* Previne rolagem horizontal indesejada (em caso de elementos que excedam o viewport) */
+    overflow-x: hidden;
+}
+
+/* Container de Conteúdo (para centralizar e limitar a largura) */
+.container {
+    max-width: 1200px;
+    /* Largura máxima do conteúdo */
+    margin: 0 auto;
+    /* Centraliza o bloco na página */
+    padding: 0 20px;
+    /* Padding lateral para evitar que o conteúdo toque as bordas em telas pequenas */
+}
+
+/* Estilo Comum para Todas as Seções */
+.section {
+    min-height: 100vh;
+    /* Garante que a seção ocupe pelo menos a altura total da viewport */
+    padding: 100px 20px;
+    /* Padding interno */
+    display: flex;
+    /* Habilita o flexbox */
+    justify-content: center;
+    /* Centraliza o conteúdo horizontalmente */
+    align-items: center;
+    /* Centraliza o conteúdo verticalmente */
+}
+
+/* Título Comum das Seções */
+.section-title {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    color: #1e3a8a;
+    /* Cor de título (azul escuro) */
+    text-align: center;
+}
+
+/* Texto Comum das Seções */
+.section-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    /* Espaçamento entre linhas */
+    margin-bottom: 20px;
+    text-align: center;
+    max-width: 800px;
+    /* Limita a largura do bloco de texto para melhor legibilidade */
+    margin-left: auto;
+    /* Centraliza o bloco de texto */
+    margin-right: auto;
+    /* Centraliza o bloco de texto */
+}
+
+/* Botão de Chamada para Ação (CTA) */
+.cta-button {
+    display: inline-block;
+    /* Permite definir padding e largura/altura, mas respeita o fluxo de texto */
+    padding: 15px 40px;
+    background-color: #fff;
+    /* Fundo branco */
+    color: #1e3a8a;
+    /* Texto azul escuro */
+    text-decoration: none;
+    border-radius: 30px;
+    /* Bordas arredondadas (estilo pílula) */
+    font-size: 1.1rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    /* Transição suave para todos os efeitos (hover e animação) */
+    animation: pulse 2s ease-in-out infinite;
+    /* Aplica a animação de pulsação */
+}
+
+/* Efeito hover no botão CTA */
+.cta-button:hover {
+    background-color: #000;
+    /* Fundo preto no hover */
+    color: #fff;
+    /* Texto branco no hover */
+    transform: scale(1.1);
+    /* Aumenta ligeiramente o tamanho */
+}
+
+/*------- Menu de Navegação Principal -------- */
+
+.navbar {
+    position: fixed;
+    /* Fixa a barra de navegação no topo da viewport */
+    top: 0;
+    /* Alinha no topo */
+    width: 100%;
+    /* Ocupa a largura total */
+    /* Fundo semi-transparente (branco com 90% de opacidade) */
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px 40px;
+    /* Preenchimento interno superior/inferior e lateral */
+    /* Usa Flexbox para alinhamento horizontal dos itens (logo e menu) */
+    display: flex;
+    justify-content: space-between;
+    /* Distribui o espaço entre os itens (logo à esquerda, menu à direita) */
+    align-items: center;
+    /* Alinha os itens verticalmente ao centro */
+    z-index: 1000;
+    /* Garante que a navbar fique sempre acima de outros elementos */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    /* Adiciona uma sombra suave abaixo da navbar */
+}
+
+/* * CONTAINER DO LOGO (Link)
+ * Usa Flexbox para alinhar a imagem e o texto horizontalmente. 
+ * Garante que o conjunto seja clicável. 
+ */
+.logo-container {
+    display: flex;
+    /* Habilita o flexbox */
+    align-items: center;
+    /* Alinha verticalmente a imagem e o texto ao centro */
+    text-decoration: none;
+    /* Remove sublinhado padrão de links */
+}
+
+/* * Estilo da Imagem do Logo 
+ * Define um tamanho fixo para a imagem.
+ */
+.logo-img {
+    height: 60px;
+    /* Altura fixa da imagem */
+    margin-right: 10px;
+    /* Espaçamento entre a imagem e o texto do logo */
+    transition: transform 0.3s ease;
+    /* Transição suave para o efeito de zoom (hover) */
+}
+
+/* * Estilo do Texto/Título do Logo */
+.logo-text {
+    font-size: 1.5rem;
+    /* Tamanho da fonte */
+    font-weight: bold;
+    /* Negrito */
+    color: #3b82f6;
+    /* Cor primária (azul) */
+    transition: color 0.3s ease;
+    /* Transição suave para a mudança de cor (hover) */
+}
+
+/* Efeitos de Hover no Logo: Mudo a cor do texto do logo quando o .logo-container é hover */
+.logo-container:hover .logo-text {
+    color: #000000;
+    /* Muda a cor do texto no hover (NOTA: Esta cor está incorreta para a navbar branca; deve ser ajustada para uma cor escura ou a cor do hover da navbar deve ser alterada.) */
+}
+
+/* Efeitos de Hover no Logo: Aplica um pequeno zoom na imagem quando o .logo-container é hover */
+.logo-container:hover .logo-img {
+    transform: scale(1.1);
+    /* Aplica um pequeno aumento de tamanho na imagem */
+}
+
+
+/* Lista de Links de Navegação */
+.nav-menu {
+    display: flex;
+    /* Habilita o flexbox para alinhar os links horizontalmente */
+    list-style: none;
+    /* Remove marcadores de lista */
+    gap: 30px;
+    /* Espaçamento entre os links da lista */
+}
+
+/* Links Individuais */
+.nav-link {
+    color: #000000;
+    /* Cor padrão do link (preto) */
+    text-decoration: none;
+    /* Remove sublinhado */
+    font-size: 1rem;
+    transition: color 0.3s ease;
+    /* Transição suave para o hover */
+}
+
+/* Efeito hover nos links de navegação */
+.nav-link:hover {
+    color: #3b82f6;
+    /* Muda a cor para o azul primário */
+}
+
+/* -------------------- RESPONSIVIDADE (Navbar) -------------------- */
+
+@media (max-width: 768px) {
+
+    /* Aplica-se em telas com largura máxima de 768px (tablets e celulares) */
+    .navbar {
+        padding: 15px 20px;
+        /* Reduz o padding da navbar em telas menores */
+    }
+
+    /* Oculta o menu de navegação em telas pequenas. Geralmente, um ícone de hambúrguer é adicionado para abrir o menu. */
+    .nav-menu {
+        display: none;
+    }
+
+    /* Ajuste de tamanho para o texto do logo em telas menores */
+    .logo-text {
+        font-size: 1.3rem;
+    }
+
+    /* Ajuste de tamanho para a imagem do logo em telas menores */
+    .logo-img {
+        height: 25px;
+    }
+}
+
+/* * Arquivo: styles/main.css
+ * Descrição: Contém o reset, estilos globais e estilos das diversas seções
+ * da Landing Page.
+ */
+
+
+
+
+
+/* -------------------- SEÇÃO HERO (HOME) -------------------- */
+
+.hero {
+    background: url('https://images.pexels.com/photos/5256522/pexels-photo-5256522.jpeg') center/cover no-repeat;
+    position: relative;
+    /* Base para o posicionamento dos elementos filhos (fundo e conteúdo) */
+    color: #000000;
+    /* Cor do texto padrão (preto) */
+    text-align: center;
+    overflow: hidden;
+    /* Oculta elementos que ultrapassam as bordas (essencial para a animação de fundo) */
+}
+
+/* Estilos para o Container da Animação de Fundo (Bolhas) */
+.background-animation {
+    position: absolute;
+    /* Posiciona o elemento de forma absoluta dentro do .hero */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    /* Oculta as partes das bolhas que saem do container */
+    z-index: 1;
+    /* Fica atrás do conteúdo principal */
+}
+
+/* Estilo Básico para todas as Bolhas de Animação */
+.circle {
+    position: absolute;
+    /* Permite posicionamento e animação livres */
+    border-radius: 50%;
+    /* Transforma o div em um círculo */
+    background: rgba(16, 47, 185, 0.158);
+    /* Cor semi-transparente (azul claro) */
+    animation: float 15s ease-in-out infinite;
+    /* Aplica a animação 'float' de 15 segundos */
+}
+
+/* Posição e Tamanho Específico para o Círculo 1 */
+.circle1 {
+    width: 300px;
+    height: 300px;
+    top: 10%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+/* Posição e Tamanho Específico para o Círculo 2 */
+.circle2 {
+    width: 200px;
+    height: 200px;
+    top: 50%;
+    right: 10%;
+    animation-delay: 2s;
+}
+
+/* Posição e Tamanho Específico para o Círculo 3 */
+.circle3 {
+    width: 400px;
+    height: 400px;
+    bottom: 10%;
+    left: 50%;
+    animation-delay: 4s;
+}
+
+/* Conteúdo Principal do Hero (Fica sobre as bolhas) */
+.hero-content {
+    color: #0364e2d0;
+    position: relative;
+    /* Garante que o z-index funcione corretamente */
+    z-index: 2;
+    /* Fica na frente das bolhas */
+}
+
+/* Estilo do Título Principal no Hero */
+.hero-title {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    animation: fadeInUp 2s ease-out;
+    /* Animação de entrada suave (fade e subida) */
+}
+
+/* Estilo do Subtítulo no Hero */
+.hero-subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 40px;
+    animation: fadeInUp 1.5s ease-out;
+    /* Animação de entrada (com atraso) */
+}
+
+/* -------------------- SEÇÃO SOBRE (ABOUT) -------------------- */
+
+.about {
+    background-color: #fff;
+    /* Fundo branco */
+    color: #000;
+    /* Texto preto */
+}
+
+/* -------------------- SEÇÃO SERVIÇOS (SERVICES) -------------------- */
+
+.services {
+    background-color: #f8f9fa;
+    /* Fundo cinza claro */
+}
+
+/* Layout em Grid dos Serviços (Responsivo com auto-fit) */
+.services-grid {
+    display: grid;
+    /* Cria colunas automáticas: Mínimo 280px, máximo 1 fração do espaço */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    /* Espaçamento entre os cartões (linhas e colunas) */
+    margin-top: 50px;
+}
+
+.service-card {
+    background-color: #fff;
+    /* Fundo branco */
+    padding: 40px 30px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(11, 24, 139, 0.5);
+    /* Sombra suave */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* Transição suave para hover */
+}
+
+/* Efeito hover no cartão de serviço */
+.service-card:hover {
+    transform: translateY(-10px);
+    /* Move o cartão ligeiramente para cima */
+    box-shadow: 0 10px 30px rgba(53, 116, 216, 0.158);
+    /* Sombra mais destacada e colorida */
+}
+
+.service-icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.service-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #032686;
+    /* Cor de título (azul escuro) */
+}
+
+.service-card p {
+    font-size: 1rem;
+    color: #555;
+    /* Cor do texto (cinza) */
+    line-height: 1.6;
+}
+
+/* -------------------- Seção Galeria -------------------- */
+
+.galeria {
+    background-color: #fff;
+    /* Fundo branco */
+}
+
+/* Layout em Grid do Portfólio (Responsivo com auto-fit) */
+.galeria-grid {
+    display: grid;
+    /* Cria colunas automáticas: Mínimo 250px, máximo 1 fração do espaço */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 50px;
+}
+
+.galeria-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(30, 74, 218, 0.5);
+    transition: transform 0.3s ease;
+}
+
+/* Efeito hover no item da galeria */
+.galeria-item:hover {
+    transform: scale(1.05);
+    /* Aplica um pequeno zoom */
+}
+
+.galeria-placeholder {
+    width: 100%;
+    height: 250px;
+    /* Fundo gradiente para itens sem imagem real */
+    background: linear-gradient(135deg, #2a6edb, #1e3a8a);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+/* -------------------- SEÇÃO CONTATO -------------------- */
+
+.contact {
+    /* Fundo gradiente azul */
+    background: linear-gradient(135deg, #3565e9, #000000);
+    color: #fff;
+    /* Texto branco */
+    text-align: center;
+}
+
+.contact .section-title {
+    color: #fff;
+    /* Título branco no fundo escuro */
+}
+
+.contact .section-text {
+    color: #fff;
+    /* Texto branco no fundo escuro */
+}
+
+/* -------------------- WHATSAPP FLUTUANTE -------------------- */
+
+.whatsapp-btn {
+    position: fixed;
+    /* Fica fixo na tela (viewport) */
+    bottom: 30px;
+    /* 30px do fundo */
+    right: 30px;
+    /* 30px da direita */
+    width: 60px;
+    height: 60px;
+    background-color: #25d366;
+    /* Cor verde do WhatsApp */
+    border-radius: 50%;
+    /* Transforma em círculo */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    /* Garante que fique acima de outros elementos */
+    text-decoration: none;
+    animation: blink 2s ease-in-out infinite;
+    /* Aplica a animação de pulsação/piscar */
+}
+
+.whatsapp-icon {
+    font-size: 2rem;
+    /* Tamanho do ícone (deve ser de uma biblioteca de ícones) */
+}
+
+/* -------------------- ANIMAÇÕES CSS -------------------- */
+
+/* Animação de flutuação dos círculos (Seção Hero) */
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0) translateX(0);
+    }
+
+    25% {
+        transform: translateY(-30px) translateX(20px);
+    }
+
+    50% {
+        transform: translateY(-60px) translateX(-20px);
+    }
+
+    75% {
+        transform: translateY(-30px) translateX(10px);
+    }
+}
+
+/* Animação de entrada suave (Hero Text) */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        /* Começa invisível */
+        transform: translateY(30px);
+        /* Começa 30px abaixo */
+    }
+
+    to {
+        opacity: 1;
+        /* Termina visível */
+        transform: translateY(0);
+        /* Termina na posição original */
+    }
+}
+
+/* Animação de pulsação do botão CTA */
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+        /* Aumenta ligeiramente no meio da animação */
+    }
+}
+
+/* Animação de piscar/pulsar do botão WhatsApp */
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.7;
+        /* Diminui a opacidade */
+        transform: scale(1.1);
+        /* Aumenta o tamanho */
+    }
+}
+
+/* -------------------- RESPONSIVIDADE GERAL -------------------- */
+
+@media (max-width: 768px) {
+
+    /* Aplica-se em telas menores (tablets e celulares) */
+    /* Ajustes para a Seção Hero */
+    .hero-title {
+        font-size: 2.5rem;
+        /* Reduz o tamanho do título principal */
+    }
+
+    .hero-subtitle {
+        font-size: 1.2rem;
+        /* Reduz o tamanho do subtítulo */
+    }
+
+    /* O layout em Grid se ajusta para uma coluna única */
+    .services-grid,
+    .galeria-grid {
+        /* Nota: Nome corrigido para .galeria-grid */
+        grid-template-columns: 1fr;
+        /* Força os itens a ocuparem a largura total (uma coluna) */
+    }
+
+    /* Ajuste de padding nas seções */
+    .section {
+        padding: 80px 10px;
+        /* Reduz o padding vertical e lateral */
+    }
+
+    /* Ajustes para o botão flutuante do WhatsApp */
+    .whatsapp-btn {
+        width: 50px;
+        /* Reduz o tamanho do botão */
+        height: 50px;
+        right: 15px;
+        /* Move para mais perto da borda */
+        bottom: 15px;
+    }
+}

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bem-vindo - Studio Motion</title>
+    <style>
+        /* Define o fundo de todo o corpo da página com um gradiente */
+        body {
+            background: linear-gradient(135deg, #4975f0, #000000); /* Gradiente de azul para preto */
+        }
+
+        /* -------------------- Estilos da Página de Carregamento (.loading-page) -------------------- */
+        .loading-page {
+            /* Ocupa a tela inteira e a mantém fixa, ignorando a rolagem */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh; /* Altura total da viewport */
+            
+            /* Centraliza o conteúdo (loader, texto, botão) usando Flexbox */
+            display: flex;
+            flex-direction: column; /* Organiza os itens verticalmente */
+            justify-content: center; /* Centraliza verticalmente */
+            align-items: center; /* Centraliza horizontalmente */
+            z-index: 9999; /* Garante que fique acima de todos os outros elementos */
+            
+            /* Transição suave para o caso de ser ocultado com JavaScript */
+            transition: opacity 0.5s ease;
+        }
+
+        /* -------------------- Estilo do Loader (Spinner) -------------------- */
+        .loader {
+            width: 60px;
+            height: 60px;
+            border: 10px solid #fff; /* Borda branca (a parte "sólida" do círculo) */
+            border-top: 2px solid transparent; /* Cria a abertura do spinner, usando uma borda transparente */
+            border-radius: 50%; /* Transforma o div em um círculo */
+            animation: spin 0.8s linear infinite; /* Aplica a animação de rotação */
+        }
+
+        /* -------------------- Estilos de Texto -------------------- */
+        .loading-page h2 {
+            color: #fff; /* Cor do título (branco) */
+            font-size: 2rem;
+            margin-top: 20px;
+        }
+
+        .loading-page p {
+            color: #fff; /* Cor do parágrafo (branco) */
+            font-size: 1rem;
+            margin-top: 10px;
+        }
+
+        /* -------------------- Botão "Entrar" (.enter-btn) -------------------- */
+        .enter-btn {
+            margin-top: 30px;
+            padding: 15px 40px;
+            background-color: #fff; /* Fundo branco */
+            color: #1e3a8a; /* Texto azul escuro */
+            text-decoration: none; /* Remove sublinhado padrão de links */
+            border: none;
+            border-radius: 30px; /* Bordas arredondadas (estilo pílula) */
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer; /* Indica que é um elemento clicável */
+            /* Transições suaves para os efeitos hover */
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+        }
+
+        /* Efeito hover no botão */
+        .enter-btn:hover {
+            transform: scale(1.1); /* Aumenta ligeiramente o tamanho */
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3); /* Adiciona uma sombra branca suave */
+        }
+
+        /* -------------------- Animações Keyframes -------------------- */
+
+        /* Animação de rotação contínua para o loader */
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* -------------------- RESPONSIVIDADE (Telas Pequenas) -------------------- */
+
+        @media (max-width: 600px) {
+            .loader {
+                width: 40px; /* Reduz o tamanho do loader */
+                height: 40px;
+                border-width: 4px; /* Reduz a espessura da borda */
+            }
+
+            .loading-page h2 {
+                font-size: 1.5rem; /* Reduz o tamanho do título */
+            }
+
+            .enter-btn {
+                padding: 12px 30px; /* Reduz o padding do botão */
+                font-size: 0.9rem; /* Reduz o tamanho da fonte do botão */
+            }
+        }
+
+        /* -------------------- Chuva Efeito (Animação de Fundo) -------------------- */
+
+        .chuva {
+            position: fixed; /* Fixa o container de fundo na tela */
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1; /* Posiciona atrás de todos os elementos, incluindo o .loading-page */
+            /* transform: rotate(215deg); - Esta linha está comentada, mas sugere a intenção de inclinar o efeito */
+        }
+
+        /* Estilo das "Gotas" individuais (cada <span>) */
+        .chuva span {
+            position: absolute;
+            animation: chuva 3s ease-in infinite; /* Aplica a animação de queda */
+            background-color: #4975f0; /* Cor azul */
+            width: 25px;
+            height: 25px;
+            /* Cria uma forma semelhante a uma gota ou bolha arredondada */
+            border-top-left-radius: 50%;
+            border-bottom-left-radius: 50%;
+            border-bottom-right-radius: 50%;
+            box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.7); /* Borda clara para dar um aspecto de brilho */
+            top: -100px; /* Começa a animação fora da tela, no topo */
+        }
+
+        /* Posição e Atraso de Animação para cada Gota */
+        /* Usa nth-child para variar o ponto de partida (left) e o tempo de início (animation-delay) */
+        /* Isso garante que as gotas caiam em momentos e lugares diferentes, criando a ilusão de chuva contínua */
+        .chuva span:nth-child(1) { left: 5%; animation-delay: 0s; }
+        .chuva span:nth-child(2) { left: 35%; animation-delay: 1s; }
+        .chuva span:nth-child(3) { left: 25%; animation-delay: 0.5s; }
+        .chuva span:nth-child(4) { left: 79%; animation-delay: 1.2s; }
+        .chuva span:nth-child(5) { left: 82%; animation-delay: 2s; }
+        .chuva span:nth-child(6) { left: 43%; animation-delay: 0.8s; }
+        .chuva span:nth-child(7) { left: 13%; animation-delay: 3s; }
+        .chuva span:nth-child(8) { left: 29%; animation-delay: 2.4s; }
+        .chuva span:nth-child(9) { left: 66%; animation-delay: 1.8s; }
+        .chuva span:nth-child(10) { left: 54%; animation-delay: 1.4s; }
+        .chuva span:nth-child(11) { left: 22%; animation-delay: 2.9s; }
+        .chuva span:nth-child(12) { left: 90%; animation-delay: 3.4s; }
+        .chuva span:nth-child(13) { left: 10%; animation-delay: 4s; }
+        .chuva span:nth-child(14) { left: 79%; animation-delay: 0.3s; }
+        .chuva span:nth-child(15) { left: 14%; animation-delay: 0.7s; }
+
+        /* Keyframes para a animação de queda da chuva */
+        @keyframes chuva {
+            0% {
+                transform: translateY(0) rotate(-45deg); /* Posição inicial (topo) com rotação */
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.6; /* Diminui a opacidade durante a queda */
+            }
+            100% {
+                transform: translateY(900px) rotate(-45deg); /* Posição final (cai 900px) com rotação */
+                opacity: 0; /* Desaparece ao chegar ao fundo para recomeçar */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="chuva">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <div class="loading-page" id="loadingPage">
+        <div class="loader"></div>
+        
+        <h2>Studio Motion</h2>
+        <p>Criatividade em Movimento</p>
+
+        <a href="inicio.html" class="enter-btn" id="enterBtn">Entrar</a>
+    </div>
+</body>
+</html>
